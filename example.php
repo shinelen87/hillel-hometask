@@ -2,7 +2,8 @@
 
 require 'ValueObject.php';
 
-function getColorFromConsole($colorName) {
+function getColorFromConsole(int $colorName): ValueObject
+{
     $red = (int) readline("Введіть значення червоного кольору для $colorName: ");
     $green = (int) readline("Введіть значення зеленого кольору для $colorName: ");
     $blue = (int) readline("Введіть значення синього кольору для $colorName: ");
