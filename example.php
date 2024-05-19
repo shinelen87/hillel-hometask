@@ -1,12 +1,12 @@
 <?php
 
-require 'RGB.php';
+require 'ValueObject.php';
 
 function getColorFromConsole($colorName) {
     $red = (int) readline("Введіть значення червоного кольору для $colorName: ");
     $green = (int) readline("Введіть значення зеленого кольору для $colorName: ");
     $blue = (int) readline("Введіть значення синього кольору для $colorName: ");
-    return new RGB($red, $green, $blue);
+    return new ValueObject($red, $green, $blue);
 }
 
 $color1 = getColorFromConsole('color1');
@@ -19,7 +19,7 @@ echo "Червоний: " . $mixedColor->getRed() . "\n";
 echo "Зелений: " . $mixedColor->getGreen() . "\n";
 echo "Синій: " . $mixedColor->getBlue() . "\n";
 
-$randomColor = RGB::random();
+$randomColor = ValueObject::random();
 echo "Випадковий колір:\n";
 echo "Червоний: " . $randomColor->getRed() . "\n";
 echo "Зелений: " . $randomColor->getGreen() . "\n";

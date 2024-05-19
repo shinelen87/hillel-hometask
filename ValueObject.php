@@ -1,6 +1,6 @@
 <?php
 
-class RGB {
+class ValueObject {
     private $red;
     private $green;
     private $blue;
@@ -52,7 +52,7 @@ class RGB {
         return true;
     }
 
-    public function equals(RGB $color) {
+    public function equals(ValueObject $color) {
         return $this->getRed() === $color->getRed() &&
                $this->getGreen() === $color->getGreen() &&
                $this->getBlue() === $color->getBlue();
@@ -62,7 +62,7 @@ class RGB {
         return new self(rand(0, 255), rand(0, 255), rand(0, 255));
     }
 
-    public function mix(RGB $color) {
+    public function mix(ValueObject $color) {
         $mixedRed = intval(($this->getRed() + $color->getRed()) / 2);
         $mixedGreen = intval(($this->getGreen() + $color->getGreen()) / 2);
         $mixedBlue = intval(($this->getBlue() + $color->getBlue()) / 2);
