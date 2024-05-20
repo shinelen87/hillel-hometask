@@ -19,9 +19,7 @@ class ValueObject {
 
     public function setRed(int $red): void
     {
-        if (!$this->isValidColorNum($red)) {
-            throw new InvalidArgumentException("Значення червоного кольору мають бути в діапазоні від 0 до 255\n");
-        }
+        $this->validateColorNum($red, "червоного");
 
         $this->red = $red;
     }
@@ -33,9 +31,7 @@ class ValueObject {
 
     public function setGreen(int $green): void
     {
-        if (!$this->isValidColorNum($green)) {
-            throw new InvalidArgumentException("Значення зеленого кольору мають бути в діапазоні від 0 до 255\n");
-        }
+        $this->validateColorNum($green, "зеленого");
 
         $this->green = $green;
     }
@@ -47,20 +43,16 @@ class ValueObject {
 
     public function setBlue(int $blue): void
     {
-        if (!$this->isValidColorNum($blue)) {
-            throw new InvalidArgumentException("Значення синього кольору мають бути в діапазоні від 0 до 255\n");
-        }
+        $this->validateColorNum($blue, "синього");
 
         $this->blue = $blue;
     }
 
-    private function isValidColorNum(int $num): bool
+    private function validateColorNum(int $num, string $color): void
     {
         if ($num < 0 || $num > 255) {
-            return false;
+            throw new InvalidArgumentException("Значення $color кольору мають бути в діапазоні від 0 до 255\n");
         }
-
-        return true;
     }
 
     public function equals(ValueObject $color): bool
