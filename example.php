@@ -1,6 +1,6 @@
 <?php
 
-require 'ValueObject.php';
+require 'Classes/Models/ValueObject.php';
 
 function getColorFromConsole(int $colorName): ValueObject
 {
