@@ -1,8 +1,10 @@
 <?php
 
-require 'Classes/Models/ValueObject.php';
+require 'vendor/autoload.php';
 
-function getColorFromConsole(int $colorName): ValueObject
+use Overload\Models\ValueObject;
+
+function getColorFromConsole(string $colorName): ValueObject
 {
     $red = (int) readline("Введіть значення червоного кольору для $colorName: ");
     $green = (int) readline("Введіть значення зеленого кольору для $colorName: ");

@@ -1,5 +1,7 @@
 <?php
 
+namespace Overload\Models;
+
 class ValueObject {
     private int $red;
     private int $green;
