@@ -5,6 +5,7 @@
     }
   },
   "require": {
-    "ext-readline": "*"
+    "ext-readline": "*",
+    "robmorgan/phinx": "^0.16.0"
   }
 }
