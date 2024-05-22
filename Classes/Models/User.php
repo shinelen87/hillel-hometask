@@ -13,11 +13,10 @@ class User {
      * @throws InvalidMethodException
      */
     public function __call(string $name, $arguments) {
-        if (method_exists($this, $name)) {
-            call_user_func_array([$this, $name], $arguments);
-        } else {
+        if (!method_exists($this, $name)) {
             throw new InvalidMethodException("Method $name does not exist.\n");
         }
+        call_user_func_array([$this, $name], $arguments);
     }
 
     private function setName(string $name): void
