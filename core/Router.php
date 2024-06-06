@@ -28,16 +28,14 @@ class Router
                 $controllerClass = 'App\\Controllers\\' . $route['controller'];
                 $controller = new $controllerClass();
 
-                if (method_exists($controller, 'before')) {
-                    $controller->before();
-                }
+                if (method_exists($controller, 'before') && $controller->before()) {
+                    $action = $route['action'];
+                    array_shift($matches); // видалити перший елемент, оскільки це буде весь URI
+                    call_user_func_array([$controller, $action], $matches);
 
-                $action = $route['action'];
-                array_shift($matches); // видалити перший елемент, оскільки це буде весь URI
-                call_user_func_array([$controller, $action], $matches);
-
-                if (method_exists($controller, 'after')) {
-                    $controller->after();
+                    if (method_exists($controller, 'after')) {
+                        $controller->after();
+                    }
                 }
 
                 return;
