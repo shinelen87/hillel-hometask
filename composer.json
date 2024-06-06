@@ -1,7 +1,9 @@
 {
   "autoload": {
     "psr-4": {
-      "Overload\\": "Classes/"
+      "Overload\\": "Classes/",
+      "App\\": "App/",
+      "Core\\": "core/"
     }
   },
   "require": {
