@@ -3,8 +3,7 @@
 namespace Migrations;
 
 class CreateMigrationsTable {
-    public function up(): string
-    {
+    public function up() {
         return "
             CREATE TABLE IF NOT EXISTS migrations (
                 id INT AUTO_INCREMENT PRIMARY KEY,
@@ -14,8 +13,7 @@ class CreateMigrationsTable {
         ";
     }
 
-    public function down(): string
-    {
+    public function down() {
         return "DROP TABLE IF EXISTS migrations;";
     }
 }
