@@ -1,6 +1,6 @@
 <?php
 
-namespace migrations;
+namespace Migrations;
 
 class CreateMigrationsTable {
     public function up(): string

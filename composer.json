@@ -1,4 +1,10 @@
 {
+  "require": {
+    "php": "^7.4 || ^8.0",
+    "ext-pdo": "*",
+    "ext-json": "*",
+    "splitbrain/php-cli": "^1.3"
+  },
   "autoload": {
     "psr-4": {
       "Overload\\": "Classes/",
@@ -6,10 +12,5 @@
       "Core\\": "core/",
       "Migrations\\": "migrations/"
     }
-  },
-  "require": {
-    "ext-pdo": "*",
-    "ext-json": "*",
-    "splitbrain/php-cli": "^1.3"
   }
 }

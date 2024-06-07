@@ -2,13 +2,13 @@
 
 namespace App\Commands;
 
-use Core\DB;
-use Migrations\CreateMigrationsTable;
-use Migrations\CreateProductsTable;
-use Migrations\CreatePurchasesTable;
-use Migrations\CreateSuppliersTable;
 use splitbrain\phpcli\CLI;
 use splitbrain\phpcli\Options;
+use Migrations\CreateProductsTable;
+use Migrations\CreateSuppliersTable;
+use Migrations\CreatePurchasesTable;
+use Migrations\CreateMigrationsTable;
+use Core\DB;
 
 class MigrateCommand extends CLI
 {

@@ -1,6 +1,6 @@
 <?php
 
-namespace migrations;
+namespace Migrations;
 
 class CreateProductsTable {
     public function up(): string
