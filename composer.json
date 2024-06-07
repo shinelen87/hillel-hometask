@@ -3,10 +3,13 @@
     "psr-4": {
       "Overload\\": "Classes/",
       "App\\": "App/",
-      "Core\\": "core/"
+      "Core\\": "core/",
+      "Migrations\\": "migrations/"
     }
   },
   "require": {
-    "ext-readline": "*"
+    "ext-pdo": "*",
+    "ext-json": "*",
+    "splitbrain/php-cli": "^1.3"
   }
 }
