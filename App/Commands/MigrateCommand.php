@@ -4,14 +4,11 @@ namespace App\Commands;
 
 use splitbrain\phpcli\CLI;
 use splitbrain\phpcli\Options;
-use Migrations\CreateProductsTable;
-use Migrations\CreateSuppliersTable;
-use Migrations\CreatePurchasesTable;
-use Migrations\CreateMigrationsTable;
 use Core\DB;
 
 class MigrateCommand extends CLI
 {
+    protected const DEFAULT_MIGRATION = '20240606_create_migrations_table';
     protected function setup(Options $options): void
     {
         $options->setHelp('Database migration command');
@@ -21,17 +18,12 @@ class MigrateCommand extends CLI
     protected function main(Options $options): void
     {
         $action = $options->getOpt('action');
-        $migrations = [
-            '20240606_create_migrations_table' => new CreateMigrationsTable(),
-            '20240606_create_products_table' => new CreateProductsTable(),
-            '20240606_create_suppliers_table' => new CreateSuppliersTable(),
-            '20240606_create_purchases_table' => new CreatePurchasesTable(),
-        ];
+        $migrations = $this->loadMigrations();
 
         $pdo = DB::connect();
 
         if ($action === 'up') {
-            $pdo->exec((new CreateMigrationsTable())->up());
+            $pdo->exec($migrations[self::DEFAULT_MIGRATION]->up());
 
             $executedMigrations = $pdo->query("SELECT migration FROM migrations")->fetchAll(\PDO::FETCH_COLUMN);
             foreach ($migrations as $migrationName => $migration) {
@@ -45,6 +37,10 @@ class MigrateCommand extends CLI
             }
         } elseif ($action === 'down') {
             foreach (array_reverse($migrations) as $migrationName => $migration) {
+                if ($migrationName === self::DEFAULT_MIGRATION) {
+                    continue;
+                }
+                
                 $query = $migration->down();
                 $pdo->exec($query);
                 $stmt = $pdo->prepare("DELETE FROM migrations WHERE migration = :migration");
@@ -56,5 +52,19 @@ class MigrateCommand extends CLI
             $this->info("Usage: php migrate.php --action [up|down]");
             exit(1);
         }
+    }
+
+    private function loadMigrations(): array
+    {
+        $files = glob(__DIR__ . '/../../migrations/*.php');
+        $migrations = [];
+
+        foreach ($files as $file) {
+            $migration = include $file;
+            $migrationName = basename($file, '.php');
+            $migrations[$migrationName] = $migration;
+        }
+
+        return $migrations;
     }
 }

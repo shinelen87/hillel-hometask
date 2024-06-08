@@ -1,8 +1,6 @@
 <?php
 
-namespace Migrations;
-
-class CreateSuppliersTable {
+return new class {
     public function up(): string
     {
         return "
@@ -20,5 +18,5 @@ class CreateSuppliersTable {
     {
         return "DROP TABLE IF EXISTS suppliers;";
     }
-}
+};
 

@@ -1,9 +1,8 @@
 <?php
 
-namespace Migrations;
-
-class CreateMigrationsTable {
-    public function up() {
+return new class {
+    public function up(): string
+    {
         return "
             CREATE TABLE IF NOT EXISTS migrations (
                 id INT AUTO_INCREMENT PRIMARY KEY,
@@ -13,7 +12,9 @@ class CreateMigrationsTable {
         ";
     }
 
-    public function down() {
+    public function down(): string
+    {
         return "DROP TABLE IF EXISTS migrations;";
     }
-}
+};
+

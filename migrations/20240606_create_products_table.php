@@ -1,8 +1,6 @@
 <?php
 
-namespace Migrations;
-
-class CreateProductsTable {
+return new class {
     public function up(): string
     {
         return "
@@ -20,4 +18,4 @@ class CreateProductsTable {
     {
         return "DROP TABLE IF EXISTS products;";
     }
-}
+};
