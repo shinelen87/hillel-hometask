@@ -20,6 +20,8 @@ services:
       MYSQL_DATABASE: mydatabase
       MYSQL_USER: user
       MYSQL_PASSWORD: user_password
+    ports:
+      - "3307:3306"
     volumes:
       - db_data:/var/lib/mysql
 
