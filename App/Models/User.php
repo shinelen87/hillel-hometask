@@ -1,6 +1,6 @@
 <?php
 
-namespace Overload\Models;
+namespace App\Models;
 
 use Overload\Exceptions\InvalidMethodException;
 

@@ -5,11 +5,11 @@ return new class {
     {
         return "
             CREATE TABLE IF NOT EXISTS products (
-                product_name VARCHAR(30) NOT NULL,
+                id INT AUTO_INCREMENT PRIMARY KEY,
+                name VARCHAR(30) NOT NULL,
                 price DECIMAL(10, 2) NOT NULL,
                 unit VARCHAR(10) NOT NULL,
-                PRIMARY KEY (product_name),
-                UNIQUE INDEX (product_name)
+                UNIQUE INDEX (id)
             ) ENGINE=INNODB;
         ";
     }

@@ -5,12 +5,14 @@ return new class {
     {
         return "
             CREATE TABLE IF NOT EXISTS purchases (
-                supplier_name VARCHAR(30) NOT NULL,
-                product_name VARCHAR(30) NOT NULL,
+                id INT AUTO_INCREMENT PRIMARY KEY,
+                supplier_id INT NOT NULL,
+                product_id INT NOT NULL,
                 quantity INT NOT NULL,
                 date DATE NOT NULL,
-                FOREIGN KEY (supplier_name) REFERENCES suppliers(supplier_name),
-                FOREIGN KEY (product_name) REFERENCES products(product_name)
+                UNIQUE INDEX (id),
+                FOREIGN KEY (supplier_id) REFERENCES suppliers(id),
+                FOREIGN KEY (product_id) REFERENCES products(id)
             ) ENGINE=INNODB;
         ";
     }

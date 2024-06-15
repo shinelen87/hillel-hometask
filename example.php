@@ -2,7 +2,7 @@
 
 require 'vendor/autoload.php';
 
-use Overload\Models\ValueObject;
+use App\Models\ValueObject;
 
 function getColorFromConsole(string $colorName): ValueObject
 {

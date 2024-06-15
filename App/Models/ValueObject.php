@@ -1,6 +1,8 @@
 <?php
 
-namespace Overload\Models;
+namespace App\Models;
+
+use InvalidArgumentException;
 
 class ValueObject {
     private int $red;

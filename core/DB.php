@@ -3,6 +3,9 @@
 namespace Core;
 
 use PDO;
+use Dotenv\Dotenv;
+
+define('BASE_DIR', dirname(__DIR__));
 
 class DB
 {
@@ -11,7 +14,10 @@ class DB
     static public function connect(): PDO
     {
         if (is_null(static::$instance)) {
-            $dsn = 'mysql:host=mysql_db;dbname=mydatabase';
+            $dotenv = Dotenv::createImmutable(BASE_DIR);
+            $dotenv->load();
+
+            $dsn = 'mysql:host=' . $_ENV['DB_HOST'] . ';dbname=' . $_ENV['DB_NAME'];
             $options = [
                 PDO::ATTR_DEFAULT_FETCH_MODE => PDO::FETCH_ASSOC,
                 PDO::ATTR_ERRMODE => PDO::ERRMODE_EXCEPTION
@@ -19,8 +25,8 @@ class DB
 
             static::$instance = new PDO(
                 $dsn,
-                'user',
-                'user_password',
+                $_ENV['DB_USER'],
+                $_ENV['DB_PASSWORD'],
                 $options
             );
         }
