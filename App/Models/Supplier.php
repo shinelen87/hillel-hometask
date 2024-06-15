@@ -7,8 +7,8 @@ class Supplier extends Model
 {
     protected static ?string $tableName = 'suppliers';
 
-    public int $id;
-    public string $name;
+    public ?int $id;
+    public ?string $name;
     public ?string $address;
     public ?string $phone;
 }
