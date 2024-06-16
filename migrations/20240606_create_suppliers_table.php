@@ -5,11 +5,11 @@ return new class {
     {
         return "
             CREATE TABLE IF NOT EXISTS suppliers (
-                supplier_name VARCHAR(30) NOT NULL,
+                id INT AUTO_INCREMENT PRIMARY KEY,
+                name VARCHAR(30) NOT NULL,
                 address VARCHAR(50),
                 phone VARCHAR(16),
-                PRIMARY KEY (supplier_name),
-                UNIQUE INDEX (supplier_name)
+                UNIQUE INDEX (id)
             ) ENGINE=INNODB;
         ";
     }

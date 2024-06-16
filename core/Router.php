@@ -43,6 +43,6 @@ class Router
         }
 
         http_response_code(Status::NOT_FOUND->value);
-        echo json_encode(['message' => 'Not Founjjd']);
+        echo json_encode(['message' => 'Not Found']);
     }
 }

@@ -15,4 +15,7 @@ RUN a2enmod rewrite
 # Налаштування прав доступу
 RUN chown -R www-data:www-data /var/www/html
 
+# Налаштування прав доступу
+RUN touch /var/www/html/project.log && chown www-data:www-data /var/www/html/project.log && chmod 777 /var/www/html/project.log
+
 EXPOSE 80

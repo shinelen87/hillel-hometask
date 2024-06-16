@@ -6,11 +6,11 @@ use App\Enums\Method;
 use Core\Router;
 
 $router = new Router();
-$router->addRoute('/^\/test\/?$/', 'TestController', 'index', Method::GET);
-$router->addRoute('/^\/test\/(\d+)\/?$/', 'TestController', 'show', Method::GET);
-$router->addRoute('/^\/test\/?$/', 'TestController', 'create', Method::POST);
-$router->addRoute('/^\/test\/(\d+)\/?$/', 'TestController', 'update', Method::PUT);
-$router->addRoute('/^\/test\/(\d+)\/?$/', 'TestController', 'delete', Method::DELETE);
+$router->addRoute('/^\/product\/?$/', 'ProductController', 'index', Method::GET);
+$router->addRoute('/^\/product\/(\d+)\/?$/', 'ProductController', 'show', Method::GET);
+$router->addRoute('/^\/product\/?$/', 'ProductController', 'create', Method::POST);
+$router->addRoute('/^\/product\/(\d+)\/?$/', 'ProductController', 'update', Method::PUT);
+$router->addRoute('/^\/product\/(\d+)\/?$/', 'ProductController', 'delete', Method::DELETE);
 
 $uri = $_SERVER['REQUEST_URI'];
 $router->dispatch($uri);
