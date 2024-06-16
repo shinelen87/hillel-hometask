@@ -5,7 +5,9 @@ namespace Core;
 use PDO;
 use Dotenv\Dotenv;
 
-define('BASE_DIR', dirname(__DIR__));
+if (!defined('BASE_DIR')) {
+    define('BASE_DIR', dirname(__DIR__));
+}
 
 class DB
 {

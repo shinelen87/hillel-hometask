@@ -18,4 +18,6 @@ RUN chown -R www-data:www-data /var/www/html
 # Налаштування прав доступу
 RUN touch /var/www/html/project.log && chown www-data:www-data /var/www/html/project.log && chmod 777 /var/www/html/project.log
 
+RUN pecl install xdebug && docker-php-ext-enable xdebug
+
 EXPOSE 80
