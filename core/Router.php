@@ -27,10 +27,9 @@ class Router
             if (preg_match($route['uriPattern'], $uri, $matches) && $route['method']->value === $requestMethod) {
                 $controllerClass = 'App\\Controllers\\' . $route['controller'];
                 $controller = new $controllerClass();
-
-                if (method_exists($controller, 'before') && $controller->before()) {
-                    $action = $route['action'];
-                    array_shift($matches); // видалити перший елемент, оскільки це буде весь URI
+                $action = $route['action'];
+                if (method_exists($controller, 'before') && $controller->before($action)) {
+                    array_shift($matches);
                     call_user_func_array([$controller, $action], $matches);
 
                     if (method_exists($controller, 'after')) {
