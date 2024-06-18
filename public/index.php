@@ -11,6 +11,13 @@ $router->addRoute('/^\/product\/(\d+)\/?$/', 'ProductController', 'show', Method
 $router->addRoute('/^\/product\/?$/', 'ProductController', 'create', Method::POST);
 $router->addRoute('/^\/product\/(\d+)\/?$/', 'ProductController', 'update', Method::PUT);
 $router->addRoute('/^\/product\/(\d+)\/?$/', 'ProductController', 'delete', Method::DELETE);
+
+$router->addRoute('/^\/supplier\/?$/', 'SupplierController', 'index', Method::GET);
+$router->addRoute('/^\/supplier\/(\d+)\/?$/', 'SupplierController', 'show', Method::GET);
+$router->addRoute('/^\/supplier\/?$/', 'SupplierController', 'create', Method::POST);
+$router->addRoute('/^\/supplier\/(\d+)\/?$/', 'SupplierController', 'update', Method::PUT);
+$router->addRoute('/^\/supplier\/(\d+)\/?$/', 'SupplierController', 'delete', Method::DELETE);
+
 $router->addRoute('/^\/register\/?$/', 'AuthController', 'register', Method::POST);
 $router->addRoute('/^\/login\/?$/', 'AuthController', 'login', Method::POST);
 

@@ -28,8 +28,9 @@ class Router
                 $controllerClass = 'App\\Controllers\\' . $route['controller'];
                 $controller = new $controllerClass();
                 $action = $route['action'];
-                if (method_exists($controller, 'before') && $controller->before($action)) {
-                    array_shift($matches);
+                array_shift($matches);
+
+                if (method_exists($controller, 'before') && $controller->before($action, $matches)) {
                     call_user_func_array([$controller, $action], $matches);
 
                     if (method_exists($controller, 'after')) {
