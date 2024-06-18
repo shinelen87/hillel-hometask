@@ -12,6 +12,9 @@
       "App\\": "App/",
       "Core\\": "core/",
       "Migrations\\": "migrations/"
-    }
+    },
+    "files": [
+      "core/helpers.php"
+    ]
   }
 }

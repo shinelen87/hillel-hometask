@@ -8,29 +8,20 @@ use App\Validators\Auth\RegisterValidator;
 use Core\Controller;
 use ReallySimpleJWT\Token;
 use App\Enums\Status;
-use Dotenv\Dotenv;
-
-if (!defined('BASE_DIR')) {
-    define('BASE_DIR', dirname(__DIR__, 2));
-}
 
 class AuthController extends Controller
 {
-    private string $secretKey;
-
-    public function __construct()
-    {
-        $dotenv = Dotenv::createImmutable(BASE_DIR);
-        $dotenv->load();
-
-        $this->secretKey = $_ENV['JWT_SECRET'];
-    }
-
     public function register(): void
     {
         $data = json_decode(file_get_contents('php://input'), true);
 
         $validator = new RegisterValidator();
+
+        if (!$validator::validateRequiredFields($data, ['username', 'email', 'password'])) {
+            $this->jsonResponse(['errors' => $validator->getErrors()], Status::BAD_REQUEST->value);
+            return;
+        }
+
         if (!$validator->validate($data)) {
             $this->jsonResponse(['errors' => $validator->getErrors()], Status::BAD_REQUEST->value);
             return;
@@ -53,6 +44,12 @@ class AuthController extends Controller
         $data = json_decode(file_get_contents('php://input'), true);
 
         $validator = new AuthValidator();
+
+        if (!$validator::validateRequiredFields($data, ['email', 'password'])) {
+            $this->jsonResponse(['errors' => $validator->getErrors()], Status::BAD_REQUEST->value);
+            return;
+        }
+
         if (!$validator->validate($data)) {
             $this->jsonResponse(['errors' => $validator->getErrors()], Status::BAD_REQUEST->value);
             return;

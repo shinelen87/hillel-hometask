@@ -3,10 +3,25 @@
 namespace Core;
 
 use App\Enums\Status;
+use Dotenv\Dotenv;
+
+if (!defined('BASE_DIR')) {
+    define('BASE_DIR', dirname(__DIR__));
+}
 
 abstract class Controller
 {
-    public function before(): bool
+    protected string $secretKey;
+
+    public function __construct()
+    {
+        $dotenv = Dotenv::createImmutable(BASE_DIR);
+        $dotenv->load();
+
+        $this->secretKey = $_ENV['JWT_SECRET'];
+    }
+
+    public function before(string $action, array $params = []): bool
     {
         return true;
     }
