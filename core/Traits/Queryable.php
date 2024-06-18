@@ -123,4 +123,20 @@ trait Queryable
 
         return null;
     }
+
+    public static function findBy(string $field, mixed $variable): ?self
+    {
+        $pdo = DB::connect();
+        $instance = new static();
+        $stmt = $pdo->prepare("SELECT * FROM " . $instance->getTableName() . " WHERE $field = :variable");
+        $stmt->execute(['variable' => $variable]);
+        $data = $stmt->fetch(PDO::FETCH_ASSOC);
+
+        if ($data) {
+            $instance->fill($data);
+            return $instance;
+        }
+
+        return null;
+    }
 }

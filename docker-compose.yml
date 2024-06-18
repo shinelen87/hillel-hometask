@@ -8,6 +8,7 @@ services:
       - "8081:80"
     volumes:
       - .:/var/www/html
+      - ./.docker/php/xdebug.ini:/usr/local/etc/php/conf.d/xdebug.ini
     depends_on:
       - db
 
