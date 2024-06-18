@@ -33,16 +33,10 @@ abstract class BaseApiController extends Controller
     protected function checkModelOwner(string $action, array $params, string $modelClass): void
     {
         if (in_array($action, ['update', 'delete'])) {
-            $result = call_user_func_array([$modelClass, 'find'], $params);
+            $result = call_user_func_array([$modelClass, 'findById'], $params);
 
             if (!$result) {
                 throw new Exception("Resource is not found", Status::NOT_FOUND->value);
-            }
-
-            $this->model = $result;
-
-            if (is_null($this->model->user_id) || $this->model->user_id !== authId()) {
-                throw new Exception("This resource is forbidden for you", Status::FORBIDDEN->value);
             }
         }
     }
